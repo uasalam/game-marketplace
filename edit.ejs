@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Online Store</title>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+    integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <<link  href="css/index.css"rel="stylesheet" type="text/css" />
+  <<link  href="css/cart.css"rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+  <nav class="navbar sticky-top" style="background-color: #e3f2fd;">
+
+    
+    <div class="ml-auto">
+      <a type="button" class="btn btn-outline-secondary" href="/admin" id="admin_page">Admin Page</a>
+    </div>
+
+  </nav>
+
+  <div class="d-flex flex-column align-items-center">
+
+    <div class="d-flex flex-column align-items-center m-5">
+          <h1 class="display-4">You are now editing <%=user%> !</h1>
+      <p></p>
+    </div>
+    
+    
+    <form action='/game/<%=game.listing_id%>?_method=PUT' method='POST'>
+      <div class="form-group row">
+          <label for='gameID' class='col-sm-4 col-form-label'>Game ID: </label>
+          <div class='col-sm-4'>
+            <input type='text' class='Form-control' id='Title' name='Title' value='<%=game.listing_id%>' disabled>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for='gameID' class='col-sm-4 col-form-label'>Title: </label>
+          <div class='col-sm-4'>
+            <input type='text' class='Form-control' id='Title' name='Title' placeholder='<%=game.title%>' required>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for='gameID' class='col-sm-4 col-form-label'>Genre: </label>
+          <div class='col-sm-4'>
+            <input type='text' class='Form-control' id='Genre' name='Genre' placeholder='<%=game.genre%>' required>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for='gameID' class='col-sm-4 col-form-label'>Price: </label>
+          <div class='col-sm-4'>
+            <input type='text' class='Form-control' id='Price' name='Price' placeholder='<%=game.price%>' required>
+          </div>
+      </div>  
+      
+      <nav class="navbar sticky-top">
+  
+      <button class='btn btn-primary'> Update Game</button>
+      
+      <div class="ml-auto">
+        <!--<a type="button" class="btn btn-danger" href='/game/<%=game.listing_id%>'>Cancel</a>-->
+         <a type="button" class="btn btn-danger" href="/admin" id="admin_page">Cancel</a>
+      </div>
+
+  </nav>
+      
+    </form>
+    
+    
+    
+
+    <div class="container-fluid">
+                <div class="row">
+                    <% games.forEach(function(games) { %>
+                    <div class="col-3 col-md-2 col-lg-2 mb-2">
+                        <div class="card" style="width: 100%;">
+                            <img class="card-img-top" src="<%= games.image_url %>" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= games.title %></h5>
+                                <p class="card-text">$<%= games.price %> </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>    
+        </div>  
+    
+   
+
+      
+
+  </div>
+
+  <div id="product-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-product-name">Product Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img id="modal-product-img" class="w-100 mb-3" />
+          <p id="modal-product-desc">Product Description</p>
+          <p class="text-right font-weight-bold">$<span id="modal-product-price">0.00</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cart-add-button" class="btn btn-primary" product_id="0">Add to cart</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
